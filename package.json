@@ -1,0 +1,35 @@
+{
+  "name": "online-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:clean": "rm -rf build",
+    "build:init": "mkdir ./build ./build/css ./build/js",
+    "build:src": "cp ./src/* ./build -rf",
+    "build:vendors": " cp ./node_modules/jquery/dist/jquery.min.js ./build/js && cp ./node_modules/bootstrap/dist/css/*.min.css ./build/css && cp ./node_modules/bootstrap/dist/js/*.min.js ./build/js",
+    "build": "npm run build:clean && npm run build:init && npm run build:src && npm run build:vendors",
+    "watch": "watch \"npm run build:src\" ./src",
+    "serve": "browser-sync start --server ./build --files ./build",
+    "test": "mocha test/**/*.spec.js",
+    "dev": "npm run build && npm run watch | npm run serve",
+    "deploy": "npm run build && gh-pages -d build/examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kospiotr/online-tools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kospiotr/online-tools/issues"
+  },
+  "homepage": "https://github.com/kospiotr/online-tools#readme",
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "gh-pages": "^0.12.0",
+    "jquery": "^3.1.1",
+    "mocha": "^3.1.2",
+    "watch": "^1.0.1"
+  }
+}
